@@ -2,13 +2,12 @@
 <resources>
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#19675d</color>
-    <color name="colorAccent">#D81B60</color>
-    <color name="colorWhiteText">#FBFDFD</color>
-    <color name="colorBlackText">#000000</color>
-    <color name="colorGreyText">#B9B9B9</color>
+    <color name="colorWhite">#FBFDFD</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorGrey">#B9B9B9</color>
 
     <color name="colorPasPink">#ffa0a0</color>
-    <color name="colorPasPinkDark">#ff5454</color>
+    <color name="colorAccent">#ff5454</color>
 
     <color name="colorPasPur">#A0A0FF</color>
 </resources>

@@ -210,9 +210,10 @@
                     android:layout_height="wrap_content"
                     android:text="@string/save"
                     android:textColor="#FBFDFD"
+                    android:textSize="20sp"
                     android:onClick="sendTaskInfo"
                     android:layout_width="fill_parent"
-                    android:background="@color/colorPrimary">
+                    android:background="@drawable/ic_icons_background">
                 </Button>
 
             </LinearLayout>

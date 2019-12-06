@@ -17,14 +17,23 @@ import android.widget.Toast;
 
 import com.example.localarm.data.Task;
 
+import java.util.Date;
+
 public class AddActivity extends AppCompatActivity {
 
     private Task task;
+
+    private Intent intent;
+    private Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
+
+        // initialize
+        intent = this.getIntent();
+        bundle = intent.getExtras();
 
         Toolbar toolbar = findViewById(R.id.toolbar_add);
         setSupportActionBar(toolbar);
@@ -79,7 +88,7 @@ public class AddActivity extends AppCompatActivity {
         String location = taskLocation.getText().toString();
 
         final DatePicker taskDate = (DatePicker) findViewById(R.id.task_date);
-        String date = taskDate.toString();
+        String date = taskDate.getMonth() + 1 + "/" + taskDate.getDayOfMonth() + "/" + taskDate.getYear();
 
         final EditText taskDescription = (EditText) findViewById(R.id.task_description);
         String description = taskDescription.getText().toString();
@@ -92,7 +101,6 @@ public class AddActivity extends AppCompatActivity {
      * @param intent intent
      */
     private void bundleTask(Intent intent) {
-        Bundle bundle = new Bundle();
         bundle.putSerializable("TASK", task);
         intent.putExtras(bundle);
     }

@@ -75,4 +75,5 @@
     <string name="notification_question">Notifications vs. Reminders?</string>
     <string name="notification_explanation">A \"notification\" is a push notification or alert which is sent when the user enters the area defined by the notification range. A \"reminder\" is a push notification or alert which is sent when the user leaves the area defined by the reminder range.</string>
     <string name="title_activity_list">ListActivity</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

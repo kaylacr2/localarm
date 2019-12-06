@@ -21,14 +21,14 @@
             android:layout_height="match_parent"
             android:gravity="top"
             android:orientation="vertical"
-            android:background="@color/colorWhiteText"
+            android:background="@color/colorWhite"
             tools:context=".ListActivity">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:background="@color/colorWhiteText">
+                android:background="@color/colorWhite">
 
                 <TextView
                     android:id="@+id/sortby"
@@ -39,7 +39,7 @@
                     android:layout_marginLeft="10dp"
                     android:textSize="22sp"
                     android:text="sort by: "
-                    android:textColor="@color/colorBlackText"/>
+                    android:textColor="@color/colorBlack"/>
 
                 <Spinner
                     android:id="@+id/SortSpinner"
@@ -60,7 +60,7 @@
                     android:layout_marginRight="10dp"
                     android:textSize="22sp"
                     android:text="Show Details    "
-                    android:textColor="@color/colorBlackText"/>
+                    android:textColor="@color/colorBlack"/>
             </RelativeLayout>
 
         </RelativeLayout>
@@ -88,7 +88,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        android:backgroundTint="@color/colorPasPinkDark"
+        android:backgroundTint="@color/colorAccent"
         android:src="@drawable/ic_add" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

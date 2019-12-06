@@ -298,10 +298,12 @@ public class SettingsActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()) {
             case R.id.menu_map:
+                Intent intentMap = new Intent(SettingsActivity.this, MapsActivity.class);
+                startActivity(intentMap);
                 return true;
             case R.id.menu_list:
-                Intent intent = new Intent(SettingsActivity.this, ListActivity.class);
-                startActivity(intent);
+                Intent intentList = new Intent(SettingsActivity.this, ListActivity.class);
+                startActivity(intentList);
                 return true;
             case R.id.menu_account:
                 return true;

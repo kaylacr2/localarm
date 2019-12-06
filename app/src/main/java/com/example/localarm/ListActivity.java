@@ -38,13 +38,17 @@ public class ListActivity extends AppCompatActivity implements AdapterView.OnIte
     ArrayList<Integer> Dists = new ArrayList<>();
     ArrayList<Integer> Times = new ArrayList<>();
 
-    Intent intent;
-    Bundle bundle;
+    private Intent intent;
+    private Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
+
+        // initialize
+        intent = this.getIntent();
+        bundle = intent.getExtras();
 
         // Add new task if applicable
         addTask();
@@ -104,7 +108,8 @@ public class ListActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         });
 
-        CreateList(list);
+        //CreateList(list);
+        rebuild();
     }
 
     /**
@@ -124,9 +129,17 @@ public class ListActivity extends AppCompatActivity implements AdapterView.OnIte
      * Load tasks from previous state.
      */
     protected void loadTasks() {
-        if (bundle != null && bundle.containsKey("TASKS")) {
-            ArrayList<ArrayList<String>> tasks = (ArrayList<ArrayList<String>>) bundle.getSerializable("TASKS");
-            items.addAll(tasks);
+        if (bundle != null && bundle.containsKey("TASK0")) {
+            int itemct = 0;
+            String itemName = "TASK" + itemct;
+
+            while (bundle.containsKey(itemName)) {
+                ArrayList<String> item = (ArrayList<String>) bundle.getSerializable(itemName);
+                items.add(item);
+
+                itemct++;
+                itemName = "TASK" + itemct;
+            }
         }
     }
 
@@ -134,10 +147,6 @@ public class ListActivity extends AppCompatActivity implements AdapterView.OnIte
      * Add task item to list.
      */
     protected void addTask() {
-        // initialize
-        intent = this.getIntent();
-        bundle = intent.getExtras();
-
         if (bundle != null && bundle.containsKey("TASK")) {
             Task task = (Task) bundle.getSerializable("TASK");
             items.add(task.getInformation());
@@ -150,7 +159,12 @@ public class ListActivity extends AppCompatActivity implements AdapterView.OnIte
      */
     private void bundleTasks(Intent intent) {
         Bundle b = new Bundle();
-        b.putSerializable("TASKS", items);
+        int itemct = 0;
+        for (ArrayList<String> item : items) {
+            String itemName = "TASK" + itemct;
+            b.putStringArrayList(itemName, item);
+            itemct++;
+        }
         b.putSerializable("SORT", SortType);
         b.putSerializable("DEETS", details);
         intent.putExtras(b);
@@ -177,11 +191,14 @@ public class ListActivity extends AppCompatActivity implements AdapterView.OnIte
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()) {
             case R.id.menu_map:
+                Intent intentMap = new Intent(ListActivity.this, MapsActivity.class);
+                bundleTasks(intentMap);
+                startActivity(intentMap);
                 return true;
             case R.id.menu_settings:
-                Intent intent = new Intent(ListActivity.this, SettingsActivity.class);
-                bundleTasks(intent);
-                startActivity(intent);
+                Intent intentSet = new Intent(ListActivity.this, SettingsActivity.class);
+                bundleTasks(intentSet);
+                startActivity(intentSet);
                 return true;
             case R.id.menu_account:
                 return true;
