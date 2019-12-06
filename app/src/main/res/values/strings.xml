@@ -1,0 +1,78 @@
+<resources>
+    <!-- Header and app labels -->
+
+    <string name="app_name">loc@larm</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Example You</string>
+    <string name="nav_header_subtitle">you@gmail.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Options</string>
+
+    <string name="header_tasks">Tasks</string>
+    <string name="header_view_task">View Task</string>
+    <string name="add_task">Add Task</string>
+
+    <string name="map_view">Map</string>
+
+    <string name="login">Login</string>
+    <string name="cont">Continue</string>
+
+    <string name="acct_con">Account connected</string>
+    <string name="acct_dis">Account disconnected</string>
+
+    <string name="back">Back</string>
+
+    <!-- Menu labels -->
+
+    <string name="menu_account">Google Account</string>
+
+    <string name="submenu_con">Connect</string>
+    <string name="submenu_dis">Disconnect</string>
+
+    <string name="menu_listview">List View</string>
+    <string name="menu_mapview">Map View</string>
+    <string name="menu_calendarview">Calendar View</string>
+    <string name="menu_settings">Settings</string>
+
+    <!-- Add task labels -->
+
+    <string name="title">Title</string>
+    <string name="title_input">Task reminder label</string>
+
+    <string name="location">Location</string>
+    <string name="location_input">Select location</string>
+
+    <string name="date">Date</string>
+    <string name="anytime">Anytime</string>
+
+    <string name="description">Description</string>
+    <string name="description_input">Add a description</string>
+
+    <string name="save">Save</string>
+    <string name="complete">Mark Complete</string>
+
+    <!-- List view sort labels -->
+
+    <string-array name="SortStyles">
+        <item>Name</item>
+        <item>Distance</item>
+        <item>Custom</item>
+    </string-array>
+
+    <!-- Settings labels -->
+
+    <string name="switch_push_notifications">Push Notifications</string>
+    <string name="text_notification_range">Default Notification Range</string>
+    <string name="button_notification">Description of notification range.</string>
+    <string name="text_reminder_range">Default Reminder Range</string>
+    <string name="button_reminder">Description of reminder range.</string>
+    <string name="text_distance">Distance Measurement</string>
+    <string name="text_alarm">Alarm</string>
+    <string name="text_alarm_setting">Vibrate</string>
+    <string name="text_alarm_sound">Alarm Sound</string>
+    <string name="text_alarm_sound_setting">Marimba</string>
+    <string name="notification_question">Notifications vs. Reminders?</string>
+    <string name="notification_explanation">A \"notification\" is a push notification or alert which is sent when the user enters the area defined by the notification range. A \"reminder\" is a push notification or alert which is sent when the user leaves the area defined by the reminder range.</string>
+    <string name="title_activity_list">ListActivity</string>
+</resources>
