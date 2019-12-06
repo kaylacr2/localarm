@@ -38,6 +38,9 @@ public class ListActivity extends AppCompatActivity implements AdapterView.OnIte
     ArrayList<Integer> Dists = new ArrayList<>();
     ArrayList<Integer> Times = new ArrayList<>();
 
+    Intent intent;
+    Bundle bundle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +50,12 @@ public class ListActivity extends AppCompatActivity implements AdapterView.OnIte
         addTask();
         // Load previous tasks
         loadTasks();
+
+        SortType = 1;
+        details = false;
+
+        // Load info if applicable
+        loadInfo();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -61,10 +70,7 @@ public class ListActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         });
 
-        // Richard's stuff
-
-        SortType = 1;
-        details = false;
+        // Richard's stuff [redacted]
 
         final LinearLayout list = findViewById(R.id.list);
 
@@ -74,11 +80,19 @@ public class ListActivity extends AppCompatActivity implements AdapterView.OnIte
 
         Spinner mySpinner = (Spinner) findViewById(R.id.SortSpinner);
 
-        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(ListActivity.this,
+        ArrayAdapter<String> myAdapter = new ArrayAdapter<>(ListActivity.this,
                 android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.SortStyles));
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mySpinner.setAdapter(myAdapter);
         mySpinner.setOnItemSelectedListener(this);
+
+        // rebuild when changed, prevent from duplicating
+        mySpinner.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                rebuild();
+            }
+        });
 
         // rebuild when show or hide details
         Switch deets = (Switch) findViewById(R.id.show_details);
@@ -94,11 +108,22 @@ public class ListActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     /**
+     * Load sort and display info from previous state.
+     */
+    protected void loadInfo() {
+        if (bundle != null && bundle.containsKey("SORT")) {
+            this.SortType = (Integer) bundle.getSerializable("SORT");
+        }
+
+        if (bundle != null && bundle.containsKey("DEETS")) {
+            this.details = (Boolean) bundle.getSerializable("DEETS");
+        }
+    }
+
+    /**
      * Load tasks from previous state.
      */
     protected void loadTasks() {
-        Intent intent = this.getIntent();
-        Bundle bundle = intent.getExtras();
         if (bundle != null && bundle.containsKey("TASKS")) {
             ArrayList<ArrayList<String>> tasks = (ArrayList<ArrayList<String>>) bundle.getSerializable("TASKS");
             items.addAll(tasks);
@@ -109,8 +134,10 @@ public class ListActivity extends AppCompatActivity implements AdapterView.OnIte
      * Add task item to list.
      */
     protected void addTask() {
-        Intent intent = this.getIntent();
-        Bundle bundle = intent.getExtras();
+        // initialize
+        intent = this.getIntent();
+        bundle = intent.getExtras();
+
         if (bundle != null && bundle.containsKey("TASK")) {
             Task task = (Task) bundle.getSerializable("TASK");
             items.add(task.getInformation());
@@ -118,13 +145,15 @@ public class ListActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     /**
-     * Bundles task information.
+     * Bundles task and organization information.
      * @param intent intent
      */
     private void bundleTasks(Intent intent) {
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("TASKS", items);
-        intent.putExtras(bundle);
+        Bundle b = new Bundle();
+        b.putSerializable("TASKS", items);
+        b.putSerializable("SORT", SortType);
+        b.putSerializable("DEETS", details);
+        intent.putExtras(b);
     }
 
     /**
