@@ -1,3 +1,9 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="sort_size">19sp</dimen>
+    <dimen name="setts_size">23sp</dimen>
+    <dimen name="attrs_size">25sp</dimen>
+    <dimen name="label_size">20sp</dimen>
+    <dimen name="input_size">18sp</dimen>
 </resources>

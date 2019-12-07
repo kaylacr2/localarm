@@ -41,7 +41,7 @@
                     android:layout_weight="1"
                     android:text="@string/switch_push_notifications"
                     android:textColor="@android:color/black"
-                    android:textSize="25sp"
+                    android:textSize="@dimen/setts_size"
                     android:layout_marginRight="10dp" />
             </LinearLayout>
 
@@ -72,14 +72,14 @@
                         android:layout_height="wrap_content"
                         android:text="@string/text_notification_range"
                         android:textColor="@android:color/black"
-                        android:textSize="25sp" />
+                        android:textSize="@dimen/setts_size" />
 
                     <TextView
                         android:id="@+id/textNotificationRange"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@android:color/black"
-                        android:textSize="25sp" />
+                        android:textSize="@dimen/attrs_size" />
                 </LinearLayout>
 
                 <ImageButton
@@ -89,7 +89,8 @@
                     android:layout_gravity="center_vertical"
                     android:contentDescription="@string/button_notification"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/ic_help" />
+                    android:src="@drawable/ic_help"
+                    android:backgroundTint="#07000000"/>
             </LinearLayout>
 
             <LinearLayout
@@ -119,14 +120,14 @@
                         android:layout_height="wrap_content"
                         android:text="@string/text_reminder_range"
                         android:textColor="@android:color/black"
-                        android:textSize="25sp" />
+                        android:textSize="@dimen/setts_size" />
 
                     <TextView
                         android:id="@+id/textReminderRange"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@android:color/black"
-                        android:textSize="25sp" />
+                        android:textSize="@dimen/attrs_size" />
                 </LinearLayout>
 
                 <ImageButton
@@ -136,7 +137,8 @@
                     android:layout_gravity="center_vertical"
                     android:contentDescription="@string/button_reminder"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/ic_help" />
+                    android:src="@drawable/ic_help"
+                    android:backgroundTint="#07000000"/>
             </LinearLayout>
 
             <LinearLayout
@@ -160,14 +162,14 @@
                     android:layout_height="wrap_content"
                     android:text="@string/text_distance"
                     android:textColor="@android:color/black"
-                    android:textSize="25sp" />
+                    android:textSize="@dimen/setts_size" />
 
                 <TextView
                     android:id="@+id/measurementUnits"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@android:color/black"
-                    android:textSize="25sp" />
+                    android:textSize="@dimen/attrs_size" />
             </LinearLayout>
 
             <LinearLayout
@@ -191,14 +193,14 @@
                     android:layout_height="wrap_content"
                     android:text="@string/text_alarm"
                     android:textColor="@android:color/black"
-                    android:textSize="25sp" />
+                    android:textSize="@dimen/setts_size" />
 
                 <TextView
                     android:id="@+id/alarmID"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@android:color/black"
-                    android:textSize="25sp" />
+                    android:textSize="@dimen/attrs_size" />
             </LinearLayout>
 
             <LinearLayout
@@ -222,14 +224,14 @@
                     android:layout_height="wrap_content"
                     android:text="@string/text_alarm_sound"
                     android:textColor="@android:color/black"
-                    android:textSize="25sp" />
+                    android:textSize="@dimen/setts_size" />
 
                 <TextView
                     android:id="@+id/alarmSound"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@android:color/black"
-                    android:textSize="25sp" />
+                    android:textSize="@dimen/attrs_size" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

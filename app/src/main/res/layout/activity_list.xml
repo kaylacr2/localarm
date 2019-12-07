@@ -37,7 +37,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="20dp"
                     android:layout_marginLeft="10dp"
-                    android:textSize="22sp"
+                    android:textSize="@dimen/sort_size"
                     android:text="sort by: "
                     android:textColor="@color/colorBlack"/>
 
@@ -58,7 +58,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="10dp"
-                    android:textSize="22sp"
+                    android:textSize="@dimen/sort_size"
                     android:text="Show Details    "
                     android:textColor="@color/colorBlack"/>
             </RelativeLayout>
