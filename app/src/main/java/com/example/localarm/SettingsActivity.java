@@ -308,11 +308,13 @@ public class SettingsActivity extends AppCompatActivity {
                 Intent intentMap = new Intent(SettingsActivity.this, MapsActivity.class);
                 intentMap.putExtras(bundle);
                 startActivity(intentMap);
+                finish(); // end
                 return true;
             case R.id.menu_list:
                 Intent intentList = new Intent(SettingsActivity.this, ListActivity.class);
                 intentList.putExtras(bundle);
                 startActivity(intentList);
+                finish(); // end
                 return true;
             case R.id.menu_account:
                 return true;

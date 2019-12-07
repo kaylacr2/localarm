@@ -69,6 +69,7 @@ public class ListActivity extends AppCompatActivity implements AdapterView.OnIte
                 Intent intent = new Intent(ListActivity.this, AddActivity.class);
                 bundleTasks(intent);
                 startActivity(intent);
+                finish(); // end
             }
         });
 
@@ -192,11 +193,13 @@ public class ListActivity extends AppCompatActivity implements AdapterView.OnIte
                 Intent intentMap = new Intent(ListActivity.this, MapsActivity.class);
                 bundleTasks(intentMap);
                 startActivity(intentMap);
+                finish(); // end
                 return true;
             case R.id.menu_settings:
                 Intent intentSet = new Intent(ListActivity.this, SettingsActivity.class);
                 bundleTasks(intentSet);
                 startActivity(intentSet);
+                finish(); // end
                 return true;
             case R.id.menu_account:
                 return true;

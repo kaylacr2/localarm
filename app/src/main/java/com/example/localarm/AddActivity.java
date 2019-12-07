@@ -46,6 +46,7 @@ public class AddActivity extends AppCompatActivity {
                 sendTaskInfo(v);
                 bundleTask(intent);
                 startActivity(intent);
+                finish(); // end
             }
         });
     }

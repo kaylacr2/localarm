@@ -52,6 +52,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Intent intentAdd = new Intent(MapsActivity.this, AddActivity.class);
                 intentAdd.putExtras(bundle);
                 startActivity(intentAdd);
+                finish(); // end
             }
         });
     }
@@ -100,11 +101,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Intent intentMap = new Intent(MapsActivity.this, ListActivity.class);
                 intentMap.putExtras(bundle);
                 startActivity(intentMap);
+                finish(); // end
                 return true;
             case R.id.menu_settings:
                 Intent intentSet = new Intent(MapsActivity.this, SettingsActivity.class);
                 intentSet.putExtras(bundle);
                 startActivity(intentSet);
+                finish(); // end
                 return true;
             case R.id.menu_account:
                 return true;
