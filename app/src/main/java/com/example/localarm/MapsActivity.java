@@ -25,13 +25,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
 
-    private Button view_list_button;
-    private Button add_task_button;
+    private Intent intent;
+    private Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+        // initialize
+        intent = this.getIntent();
+        bundle = intent.getExtras();
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -44,12 +49,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MapsActivity.this, AddActivity.class);
-                startActivity(intent);
+                Intent intentAdd = new Intent(MapsActivity.this, AddActivity.class);
+                intentAdd.putExtras(bundle);
+                startActivity(intentAdd);
             }
         });
     }
-
 
     /**
      * Manipulates the map once available.
@@ -93,10 +98,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         switch(item.getItemId()) {
             case R.id.menu_list:
                 Intent intentMap = new Intent(MapsActivity.this, ListActivity.class);
+                intentMap.putExtras(bundle);
                 startActivity(intentMap);
                 return true;
             case R.id.menu_settings:
                 Intent intentSet = new Intent(MapsActivity.this, SettingsActivity.class);
+                intentSet.putExtras(bundle);
                 startActivity(intentSet);
                 return true;
             case R.id.menu_account:

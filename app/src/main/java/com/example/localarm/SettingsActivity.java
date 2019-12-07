@@ -47,10 +47,17 @@ public class SettingsActivity extends AppCompatActivity {
     public String alarmType = "Vibrate";
     public String alarmSoundString = "Marimba";
 
+    private Intent intent;
+    private Bundle bundle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
+        // initialize
+        intent = this.getIntent();
+        bundle = intent.getExtras();
 
         Toolbar toolbar = findViewById(R.id.toolbar_settings);
         setSupportActionBar(toolbar);
@@ -299,10 +306,12 @@ public class SettingsActivity extends AppCompatActivity {
         switch(item.getItemId()) {
             case R.id.menu_map:
                 Intent intentMap = new Intent(SettingsActivity.this, MapsActivity.class);
+                intentMap.putExtras(bundle);
                 startActivity(intentMap);
                 return true;
             case R.id.menu_list:
                 Intent intentList = new Intent(SettingsActivity.this, ListActivity.class);
+                intentList.putExtras(bundle);
                 startActivity(intentList);
                 return true;
             case R.id.menu_account:
