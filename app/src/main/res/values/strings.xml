@@ -55,9 +55,9 @@
     <!-- List view sort labels -->
 
     <string-array name="SortStyles">
+        <item>Time</item>
+        <item>Location</item>
         <item>Name</item>
-        <item>Distance</item>
-        <item>Custom</item>
     </string-array>
 
     <!-- Settings labels -->

@@ -1,6 +1,7 @@
 package com.example.localarm;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.example.localarm.data.Task;
@@ -30,13 +31,10 @@ import java.util.Random;
 
 public class ListActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener  {
 
-    private ImageButton setting;
     private int SortType;
     private boolean details;
 
     ArrayList<ArrayList<String>> items = new ArrayList<>();                                         // newly created items should be stored into here
-    ArrayList<Integer> Dists = new ArrayList<>();
-    ArrayList<Integer> Times = new ArrayList<>();
 
     private Intent intent;
     private Bundle bundle;
@@ -55,7 +53,7 @@ public class ListActivity extends AppCompatActivity implements AdapterView.OnIte
         // Load previous tasks
         loadTasks();
 
-        SortType = 1;
+        SortType = 2;
         details = false;
 
         // Load info if applicable
@@ -78,7 +76,7 @@ public class ListActivity extends AppCompatActivity implements AdapterView.OnIte
 
         final LinearLayout list = findViewById(R.id.list);
 
-        if (SortType != 2) {
+        if (SortType != 4) {
             SortTasks();
         }
 
@@ -285,7 +283,8 @@ public class ListActivity extends AppCompatActivity implements AdapterView.OnIte
                         LinearLayout.LayoutParams.WRAP_CONTENT
                 );
                 if (j == 0) {
-                    textView.setTextSize((float)16.5);
+                    textView.setTextSize((float)18.5);
+                    textView.setTextColor(Color.BLACK);
                 } else {
                     textView.setTextSize((float)13.5);
                 }
@@ -308,36 +307,23 @@ public class ListActivity extends AppCompatActivity implements AdapterView.OnIte
 
         int n = items.size();
 
-        if (SortType != 1) {
-            for (int i = 0; i < n - 1; i++) {
-                for (int j = 0; j < n - i - 1; j++) {
-                    String A = items.get(j).get(SortType);
-                    String B = items.get(j + 1).get(SortType);
 
-                    int k = 0;
-                    while (A.charAt(k) == B.charAt(k)) {
-                        k++;
-                    }
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                String A = items.get(j).get(SortType);
+                String B = items.get(j + 1).get(SortType);
 
-                    if ((int) A.charAt(k) > (int) B.charAt(k)) {
-                        Collections.swap(items, j, j + 1);
-                        Collections.swap(Dists, j, j + 1);
-                        Collections.swap(Times, j, j + 1);
-                    }
+                int k = 0;
+                while (A.charAt(k) == B.charAt(k)) {
+                    k++;
                 }
-            }
-        }
-        else {
-            for (int i = 0; i < n - 1; i++) {
-                for (int j = 0; j < n - i - 1; j++) {
-                    int A = Dists.get(j);
-                    int B = Dists.get(j+1);
 
-                    if (A > B) {
-                        Collections.swap(items, j, j + 1);
-                        Collections.swap(Dists, j, j + 1);
-                        Collections.swap(Times, j, j + 1);
-                    }
+                if (k >= A.length() || k >= B.length()) {
+                    k = 0;
+                }
+
+                if ((int) A.charAt(k) > (int) B.charAt(k)) {
+                    Collections.swap(items, j, j + 1);
                 }
             }
         }
