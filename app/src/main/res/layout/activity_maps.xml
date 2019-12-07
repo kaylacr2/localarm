@@ -2,6 +2,18 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
     android:layout_width="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <include
+            android:id="@+id/toolbar_map_view"
+            layout="@layout/toolbar_map"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -24,11 +36,6 @@
             android:layout_height="match_parent"
             android:orientation="horizontal"
             android:gravity="bottom|right">
-            <Button
-                android:id="@+id/add_task"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/ic_add" /> <!-- PLUS button replace the image -->
         </LinearLayout>
     </RelativeLayout>
 
@@ -40,13 +47,18 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:gravity="bottom|center_horizontal">
-            <Button
-                android:id="@+id/view_list"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/ic_arrow_back" />
         </LinearLayout>
     </RelativeLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:backgroundTint="@color/colorAccent"
+        android:src="@drawable/ic_add" />
+
 </FrameLayout>
 
 
