@@ -26,8 +26,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 public class ListActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener  {
 
@@ -53,7 +60,7 @@ public class ListActivity extends AppCompatActivity implements AdapterView.OnIte
         // Load previous tasks
         loadTasks();
 
-        SortType = 2;
+        SortType = 0;
         details = false;
 
         // Load info if applicable
@@ -76,10 +83,6 @@ public class ListActivity extends AppCompatActivity implements AdapterView.OnIte
         // Richard's stuff [redacted]
 
         final LinearLayout list = findViewById(R.id.list);
-
-        if (SortType != 4) {
-            SortTasks();
-        }
 
         Spinner mySpinner = (Spinner) findViewById(R.id.SortSpinner);
 
@@ -218,13 +221,13 @@ public class ListActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String sortOption = parent.getItemAtPosition(position).toString();
 
-        if (sortOption.charAt(0) == 'N') {
+        if (sortOption.charAt(0) == 'T') { // time
             SortType = 0;
             rebuild();
-        } else if (sortOption.charAt(0) == 'D') {
+        } else if (sortOption.charAt(0) == 'L') { // location
             SortType = 1;
             rebuild();
-        } else {
+        } else { // name
             SortType = 2;
         }
     }
@@ -307,26 +310,68 @@ public class ListActivity extends AppCompatActivity implements AdapterView.OnIte
      * Task sorting function.
      */
     protected void SortTasks(){
+        if (SortType == 0) {
+            // filling unsorted map
+            HashMap<ArrayList<String>, Long> unsorted = new HashMap<>();
 
-        int n = items.size();
+            // today's date as starting point
+            Calendar calendar = Calendar.getInstance();
+            Date today = calendar.getTime();
+            
+            for (ArrayList<String> item : items) {
+                String[] parts = item.get(2).split("/");
+                calendar.set(Integer.parseInt(parts[2]), Integer.parseInt(parts[0]) - 1, Integer.parseInt(parts[1]), 0, 0);
 
+                // date related to item
+                Date itemday = calendar.getTime();
 
-        for (int i = 0; i < n - 1; i++) {
-            for (int j = 0; j < n - i - 1; j++) {
-                String A = items.get(j).get(SortType);
-                String B = items.get(j + 1).get(SortType);
+                // map item to days away from current date
+                long diff = itemday.getTime() - today.getTime();
+                unsorted.put(item, TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
+            }
 
-                int k = 0;
-                while (A.charAt(k) == B.charAt(k)) {
-                    k++;
+            // custom comparator
+            Comparator<Map.Entry<ArrayList<String>, Long>> comparator = new Comparator<Map.Entry<ArrayList<String>, Long>>() {
+                @Override
+                public int compare(Map.Entry<ArrayList<String>, Long> e1, Map.Entry<ArrayList<String>, Long> e2) {
+                    long v1 = e1.getValue();
+                    long v2 = e2.getValue();
+                    return (int) (v1 - v2);
                 }
+            };
 
-                if (k >= A.length() || k >= B.length()) {
-                    k = 0;
-                }
+            // convert
+            Set<Map.Entry<ArrayList<String>, Long>> entries = unsorted.entrySet();
+            ArrayList<Map.Entry<ArrayList<String>, Long>> sorted = new ArrayList<Map.Entry<ArrayList<String>, Long>>(entries);
 
-                if ((int) A.charAt(k) > (int) B.charAt(k)) {
-                    Collections.swap(items, j, j + 1);
+            // sorting HashMap by values using comparator
+            Collections.sort(sorted, comparator);
+
+            // clear and put back sorted
+            items.clear();
+            for (Map.Entry<ArrayList<String>, Long> item : sorted) {
+                items.add(item.getKey());
+            }
+        } else if (SortType == 1) {
+            int n = items.size();
+
+            for (int i = 0; i < n - 1; i++) {
+                for (int j = 0; j < n - i - 1; j++) {
+                    String A = items.get(j).get(SortType);
+                    String B = items.get(j + 1).get(SortType);
+
+                    int k = 0;
+                    while (A.charAt(k) == B.charAt(k)) {
+                        k++;
+                    }
+
+                    if (k >= A.length() || k >= B.length()) {
+                        k = 0;
+                    }
+
+                    if ((int) A.charAt(k) > (int) B.charAt(k)) {
+                        Collections.swap(items, j, j + 1);
+                    }
                 }
             }
         }
